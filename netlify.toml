@@ -22,5 +22,3 @@
   to = "/index.html"
   status = 404
 
-[[plugins]]
-  package = "@astrojs/sitemap"
