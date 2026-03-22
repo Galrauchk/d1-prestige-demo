@@ -1,0 +1,46 @@
+---
+interface Crumb {
+  label: string
+  href?: string
+}
+
+interface Props {
+  items: Crumb[]
+}
+
+const { items } = Astro.props
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://d1-prestige-demo.netlify.app" },
+    ...items.map((item, i) => ({
+      "@type": "ListItem",
+      "position": i + 2,
+      "name": item.label,
+      ...(item.href ? { "item": `https://d1-prestige-demo.netlify.app${item.href}` } : {})
+    }))
+  ]
+}
+---
+
+<nav aria-label="Fil d'Ariane" style="padding:.875rem 0;">
+  <div class="breadcrumb">
+    <a href="/">Accueil</a>
+    {items.map((item, i) => (
+      <>
+        <span class="breadcrumb-sep" aria-hidden="true">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </span>
+        {item.href && i < items.length - 1 ? (
+          <a href={item.href}>{item.label}</a>
+        ) : (
+          <span class="breadcrumb-current" aria-current="page">{item.label}</span>
+        )}
+      </>
+    ))}
+  </div>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,8 @@
+---
+import ComboLayout from '../../layouts/ComboLayout.astro'
+import { getVille } from '../../data/villes'
+import { getMetier } from '../../data/metiers'
+const ville = getVille('montpellier')!
+const metier = getMetier('renovation')!
+---
+<ComboLayout ville={ville} metier={metier} />

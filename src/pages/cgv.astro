@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Breadcrumb from '../components/Breadcrumb.astro'
+---
+<BaseLayout title="CGV — Conditions Générales de Vente — Meridian Groupe" description="Conditions générales de vente de Meridian Groupe. Devis, commande, modalités de paiement, garanties." noindex={true}>
+  <div class="page-hero" style="padding:5rem 0 3rem;">
+    <div class="container" style="position:relative;z-index:1;">
+      <Breadcrumb items={[{ label: 'CGV' }]} />
+      <h1 style="color:white;font-size:clamp(2rem,4vw,3rem);font-weight:900;margin:1.5rem 0 0;">Conditions Générales de Vente</h1>
+    </div>
+  </div>
+  <section class="section" style="background:white;">
+    <div class="container" style="max-width:800px;">
+      <div style="display:flex;flex-direction:column;gap:2.5rem;color:#374151;line-height:1.8;">
+        {[
+          { titre: 'Article 1 — Objet', contenu: 'Les présentes CGV régissent les relations commerciales entre Meridian Groupe SAS et ses clients dans le cadre de prestations de travaux BTP.' },
+          { titre: 'Article 2 — Devis et commandes', contenu: 'Tout devis est gratuit et valable 30 jours. La signature du devis et le versement d\'un acompte valent acceptation des présentes CGV.' },
+          { titre: 'Article 3 — Prix et paiement', contenu: 'Les prix sont en euros HT. Un acompte de 30% est versé à la commande, 30% en cours de chantier, et le solde de 40% à la réception. Délai de paiement : 30 jours.' },
+          { titre: 'Article 4 — Délais d\'exécution', contenu: 'Les délais sont indiqués dans le devis. Meridian Groupe ne peut être tenu responsable de retards dus à des conditions climatiques exceptionnelles ou à des modifications de commande.' },
+          { titre: 'Article 5 — Garanties', contenu: 'Nos travaux bénéficient de la garantie décennale (10 ans), de la garantie de parfait achèvement (1 an) et de la garantie biennale (2 ans) conformément à la législation en vigueur.' },
+          { titre: 'Article 6 — Litiges', contenu: 'Tout litige relatif à ces CGV sera soumis à la juridiction compétente du ressort du siège social de Meridian Groupe, à Montpellier.' },
+        ].map(s => (
+          <div>
+            <h2 style="font-size:1.25rem;font-weight:700;color:#0f172a;margin:0 0 .75rem;">{s.titre}</h2>
+            <p style="margin:0;">{s.contenu}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

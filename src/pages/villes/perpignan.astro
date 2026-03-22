@@ -1,0 +1,6 @@
+---
+import VilleLayout from '../../layouts/VilleLayout.astro'
+import { getVille } from '../../data/villes'
+const ville = getVille('perpignan')!
+---
+<VilleLayout ville={ville} />

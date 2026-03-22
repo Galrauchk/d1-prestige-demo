@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Breadcrumb from '../components/Breadcrumb.astro'
+---
+
+<BaseLayout
+  title="Contact — Meridian Groupe | Montpellier 04 67 00 00 00"
+  description="Contactez Meridian Groupe à Montpellier. Devis gratuit sous 48h, téléphone, email, adresse. Intervention dans 20 villes d'Occitanie."
+>
+  <div class="page-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <Breadcrumb items={[{ label: 'Contact' }]} />
+      <div style="max-width:600px;margin-top:2rem;">
+        <h1 style="color:white;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:0 0 1rem;line-height:1.1;">
+          Nous contacter
+        </h1>
+        <p style="color:rgba(255,255,255,.75);font-size:1.0625rem;max-width:480px;line-height:1.7;">
+          Notre équipe est disponible du lundi au vendredi, 8h-18h. Devis gratuit sous 48h ouvrées.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="background:#f8fafc;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr;gap:3rem;" class="contact-grid">
+
+        <!-- Form -->
+        <div class="reveal-element">
+          <h2 style="font-size:1.75rem;font-weight:800;color:#0f172a;margin:0 0 2rem;">Envoyez-nous un message</h2>
+          <form style="display:flex;flex-direction:column;gap:1.25rem;" onsubmit="return false;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div>
+                <label class="form-label">Nom *</label>
+                <input type="text" class="form-input" placeholder="Votre nom" required />
+              </div>
+              <div>
+                <label class="form-label">Prénom</label>
+                <input type="text" class="form-input" placeholder="Votre prénom" />
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div>
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-input" placeholder="votre@email.fr" required />
+              </div>
+              <div>
+                <label class="form-label">Téléphone *</label>
+                <input type="tel" class="form-input" placeholder="06 XX XX XX XX" required />
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Ville d'intervention</label>
+              <input type="text" class="form-input" placeholder="Montpellier, Nîmes..." />
+            </div>
+            <div>
+              <label class="form-label">Votre message *</label>
+              <textarea class="form-textarea" placeholder="Décrivez votre projet..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-gradient" style="align-self:flex-start;padding:1rem 2.5rem;">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Envoyer le message
+            </button>
+          </form>
+        </div>
+
+        <!-- Info -->
+        <div class="reveal-element delay-200">
+          <h2 style="font-size:1.75rem;font-weight:800;color:#0f172a;margin:0 0 2rem;">Coordonnées</h2>
+          <div style="display:flex;flex-direction:column;gap:1.5rem;">
+            {[
+              { icon: '📞', titre: 'Téléphone', val: '04 67 00 00 00', href: 'tel:0467000000' },
+              { icon: '✉️', titre: 'Email', val: 'contact@meridian-groupe.fr', href: 'mailto:contact@meridian-groupe.fr' },
+              { icon: '📍', titre: 'Adresse', val: 'Montpellier, 34000\nOccitanie, France', href: null },
+              { icon: '🕐', titre: 'Horaires', val: 'Lun-Ven 8h00 - 18h00\nSamedi sur rendez-vous', href: null },
+            ].map(c => (
+              <div style="display:flex;gap:1rem;padding:1.5rem;background:white;border-radius:1rem;border:1.5px solid #f1f5f9;">
+                <span style="font-size:1.5rem;">{c.icon}</span>
+                <div>
+                  <p style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:#94a3b8;margin:0 0 .25rem;">{c.titre}</p>
+                  {c.href ? (
+                    <a href={c.href} style="font-weight:600;color:#0f172a;font-size:.9375rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='var(--electric)'" onmouseout="this.style.color='#0f172a'">{c.val}</a>
+                  ) : (
+                    <p style="font-weight:600;color:#0f172a;font-size:.9375rem;margin:0;white-space:pre-line;">{c.val}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Zone map placeholder -->
+          <div style="margin-top:2rem;border-radius:1rem;overflow:hidden;border:1.5px solid #f1f5f9;height:200px;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);display:flex;align-items:center;justify-content:center;">
+            <div style="text-align:center;color:#94a3b8;">
+              <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto 1rem;display:block;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p style="font-weight:600;margin:0;">Montpellier, Occitanie</p>
+              <p style="font-size:.8rem;margin:.25rem 0 0;">20 villes desservies</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+@media(min-width:1024px){ .contact-grid { grid-template-columns: 3fr 2fr !important; } }
+</style>

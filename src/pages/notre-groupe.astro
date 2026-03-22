@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Breadcrumb from '../components/Breadcrumb.astro'
+import CtaSection from '../components/CtaSection.astro'
+
+const timeline = [
+  { annee: '1998', titre: 'Fondation à Montpellier', desc: 'Création par trois artisans passionnés avec une équipe de 5 collaborateurs.' },
+  { annee: '2002', titre: 'Première expansion', desc: 'Ouverture sur Nîmes et Béziers. L\'équipe atteint 12 collaborateurs.' },
+  { annee: '2008', titre: 'Diversification métiers', desc: 'Intégration de la charpente, couverture et étanchéité. 20 collaborateurs.' },
+  { annee: '2012', titre: 'Certification RGE', desc: 'Obtention de la certification RGE et Qualibat. Expansion vers Perpignan.' },
+  { annee: '2016', titre: 'Cap des 30 collaborateurs', desc: 'Ouverture sur 15 villes d\'Occitanie. CA de 5M€.' },
+  { annee: '2020', titre: 'Transformation digitale', desc: 'Déploiement du suivi de chantier digital. 40 collaborateurs.' },
+  { annee: '2024', titre: 'Aujourd\'hui', desc: '45 collaborateurs, 20 villes, 8M€ de CA. Leader régional BTP en Occitanie.' },
+]
+
+const equipe = [
+  { nom: 'Laurent Dupuis', role: 'PDG & Fondateur', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=80', exp: '26 ans' },
+  { nom: 'Marie Fontaine', role: 'DG Opérations', photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80', exp: '18 ans' },
+  { nom: 'Antoine Bernard', role: 'Directeur Technique', photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80', exp: '15 ans' },
+  { nom: 'Sophie Lacombe', role: 'Responsable Projets', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80', exp: '12 ans' },
+  { nom: 'François Vidal', role: 'Chef de Chantier Senior', photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80', exp: '20 ans' },
+  { nom: 'Camille Martin', role: 'Responsable RH', photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80', exp: '8 ans' },
+]
+
+const valeurs = [
+  { icon: '🏆', titre: 'Excellence', desc: 'Chaque finition compte. Nous ne livrons que ce dont nous sommes fiers.' },
+  { icon: '🤝', titre: 'Confiance', desc: 'Engagement tenu, parole donnée. La transparence guide toutes nos relations.' },
+  { icon: '🌿', titre: 'Durabilité', desc: 'Construire pour les générations futures, avec des matériaux durables.' },
+  { icon: '👥', titre: 'Proximité', desc: 'Un interlocuteur humain, disponible, qui connaît votre projet par cœur.' },
+  { icon: '💡', titre: 'Innovation', desc: 'Techniques modernes, matériaux performants, outils digitaux de suivi.' },
+  { icon: '🏅', titre: 'Qualité', desc: 'Processus qualité rigoureux, certifications maintenues, contrôles permanents.' },
+]
+---
+
+<BaseLayout
+  title="Notre Groupe — Meridian Groupe | 26 ans d'expertise BTP en Occitanie"
+  description="Découvrez l'histoire de Meridian Groupe, fondé en 1998 à Montpellier. 45 collaborateurs, 26 ans d'expérience, 8M€ de CA. Notre équipe, nos valeurs, nos certifications."
+>
+  <div class="page-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <Breadcrumb items={[{ label: 'Notre Groupe' }]} />
+      <div style="max-width:700px;margin-top:2rem;">
+        <div class="section-label">Fondé en 1998 · Montpellier</div>
+        <h1 style="color:white;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:0 0 1.25rem;line-height:1.1;">
+          Bâtisseurs d'Occitanie<br/>
+          <span style="background:linear-gradient(135deg,#00e5ff,#0066ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">depuis 26 ans</span>
+        </h1>
+        <p style="color:rgba(255,255,255,.75);font-size:1.0625rem;max-width:560px;line-height:1.7;">
+          De trois artisans fondateurs à 45 collaborateurs, Meridian Groupe est devenu le partenaire BTP de référence de l'Occitanie.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <section style="background:linear-gradient(135deg,#00e5ff,#0066ff);padding:3.5rem 0;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;text-align:center;" class="about-stats">
+        {[
+          { val: '45', label: 'Collaborateurs' },
+          { val: '26', label: "Ans d'expérience" },
+          { val: '8M€', label: 'de chiffre d\'affaires' },
+          { val: '2400+', label: 'Chantiers réalisés' },
+        ].map(s => (
+          <div class="reveal-element">
+            <div style="font-weight:900;font-size:clamp(2rem,4vw,3.5rem);color:#0a0f1e;line-height:1;">{s.val}</div>
+            <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(10,15,30,.65);margin-top:.375rem;">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- History -->
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:4rem;" class="reveal-element">
+        <div class="section-label" style="justify-content:center;">Notre parcours</div>
+        <h2 class="h2-serif" style="font-size:clamp(1.875rem,3.5vw,2.75rem);color:#0f172a;margin:0;">26 ans d'histoire</h2>
+      </div>
+      <!-- Timeline -->
+      <div style="position:relative;max-width:700px;margin:0 auto;">
+        <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#00e5ff,#0066ff);transform:translateX(-50%);" class="hidden md:block"></div>
+        {timeline.map((t, i) => (
+          <div class="reveal-element" style={`display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:2.5rem;flex-direction:${i%2===0?'row':'row-reverse'};transition-delay:${i*80}ms;`}>
+            <div style={`flex:1;text-align:${i%2===0?'right':'left'};` + (i%2===0 ? '' : '')}>
+              <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--cyan);">{t.annee}</span>
+              <h3 style="font-size:1.1rem;font-weight:700;color:#0f172a;margin:.25rem 0 .5rem;">{t.titre}</h3>
+              <p style="color:#374151;font-size:.9rem;line-height:1.6;margin:0;">{t.desc}</p>
+            </div>
+            <div style="width:44px;height:44px;background:linear-gradient(135deg,#00e5ff,#0066ff);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 0 4px white,0 0 0 6px rgba(0,229,255,.3);z-index:1;">
+              <svg width="18" height="18" fill="none" stroke="#0a0f1e" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>
+            </div>
+            <div style="flex:1;"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Valeurs -->
+  <section class="section" style="background:#f8fafc;" id="valeurs">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3.5rem;" class="reveal-element">
+        <div class="section-label" style="justify-content:center;">Ce qui nous guide</div>
+        <h2 style="font-size:clamp(1.875rem,3.5vw,2.75rem);font-weight:800;color:#0f172a;margin:0;">Nos valeurs fondamentales</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;" class="valeurs-grid">
+        {valeurs.map((v, i) => (
+          <div class="reveal-element" style={`padding:2rem;background:white;border-radius:1rem;border:1.5px solid #f1f5f9;transition:all .3s;transition-delay:${i*80}ms;`} onmouseover="this.style.borderColor='var(--cyan)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,.08)'" onmouseout="this.style.borderColor='#f1f5f9';this.style.transform='';this.style.boxShadow=''">
+            <div style="font-size:2rem;margin-bottom:1rem;">{v.icon}</div>
+            <h3 style="font-weight:700;color:#0f172a;font-size:1.125rem;margin:0 0 .625rem;">{v.titre}</h3>
+            <p style="color:#374151;font-size:.9rem;line-height:1.65;margin:0;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Équipe -->
+  <section class="section" style="background:white;" id="equipe">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3.5rem;" class="reveal-element">
+        <div class="section-label" style="justify-content:center;">Les visages de Meridian</div>
+        <h2 style="font-size:clamp(1.875rem,3.5vw,2.75rem);font-weight:800;color:#0f172a;margin:0;">Notre équipe dirigeante</h2>
+        <p style="color:#374151;max-width:500px;margin:1rem auto 0;">Des professionnels passionnés qui portent les valeurs du groupe depuis des années.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;" class="equipe-grid">
+        {equipe.map((p, i) => (
+          <div class="reveal-element" style={`transition-delay:${i*80}ms;`}>
+            <div style="border-radius:1.25rem;overflow:hidden;position:relative;margin-bottom:1rem;">
+              <img src={p.photo} alt={p.nom} loading="lazy" style="width:100%;height:260px;object-fit:cover;object-position:top;" />
+              <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(10,15,30,.8));padding:1.25rem;">
+                <span style="font-size:.65rem;font-weight:700;color:var(--cyan);">{p.exp} d'expérience</span>
+              </div>
+            </div>
+            <h3 style="font-weight:700;color:#0f172a;font-size:1.0625rem;margin:0 0 .25rem;">{p.nom}</h3>
+            <p style="color:#94a3b8;font-size:.875rem;margin:0;">{p.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="section" style="background:var(--navy);" id="certifications">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3.5rem;" class="reveal-element">
+        <div class="section-label" style="justify-content:center;">Gages de qualité</div>
+        <h2 style="color:white;font-size:clamp(1.875rem,3.5vw,2.75rem);font-weight:800;margin:0;">Nos certifications</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;" class="certifs-grid">
+        {[
+          { name: 'Qualibat', desc: 'Qualification professionnelle dans le BTP. Gage de compétences techniques et de solidité financière.', code: '2111' },
+          { name: 'RGE', desc: 'Reconnu Garant de l\'Environnement. Condition nécessaire pour vos aides MaPrimeRénov\' et CEE.', code: 'Éco Artisan' },
+          { name: 'Garantie Décennale', desc: 'Assurance obligatoire couvrant les dommages structurels pendant 10 ans après réception.', code: 'SMABTP' },
+          { name: 'Dommages-Ouvrage', desc: 'Protection complète du maître d\'ouvrage pendant toute la durée de construction.', code: 'AXA Pro' },
+        ].map((c, i) => (
+          <div class="glass-card gradient-border-card reveal-element" style={`padding:2rem;transition-delay:${i*100}ms;`}>
+            <div style="width:48px;height:48px;background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,102,255,.1));border-radius:.75rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+              <svg width="22" height="22" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
+            <h3 style="color:white;font-weight:700;font-size:1.0625rem;margin:0 0 .625rem;">{c.name}</h3>
+            <p style="color:rgba(255,255,255,.6);font-size:.875rem;line-height:1.65;margin:0 0 1rem;">{c.desc}</p>
+            <span style="font-size:.7rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;">{c.code}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+@media(min-width:768px){
+  .about-stats { grid-template-columns: repeat(4,1fr) !important; }
+  .valeurs-grid { grid-template-columns: repeat(3,1fr) !important; }
+  .equipe-grid  { grid-template-columns: repeat(3,1fr) !important; }
+  .certifs-grid { grid-template-columns: repeat(4,1fr) !important; }
+}
+</style>

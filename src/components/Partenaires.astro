@@ -1,0 +1,37 @@
+---
+const logos = [
+  { name: 'Qualibat', desc: 'Qualification' },
+  { name: 'RGE', desc: 'Reconnu Garant' },
+  { name: 'MaPrimeRénov\'', desc: 'Éligible' },
+  { name: 'Décennale', desc: 'Assurance' },
+  { name: 'Pro BTP', desc: 'Partenaire' },
+  { name: 'CAPEB', desc: 'Membre' },
+  { name: 'FFB', desc: 'Fédération' },
+  { name: 'SMABTP', desc: 'Assureur' },
+]
+---
+
+<section style="background:white;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:3rem 0;overflow:hidden;">
+  <div class="container" style="margin-bottom:1.5rem;">
+    <p style="text-align:center;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.25em;color:#94a3b8;">
+      Certifications &amp; partenaires de confiance
+    </p>
+  </div>
+  <div style="overflow:hidden;position:relative;">
+    <!-- Fade edges -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,white,transparent);z-index:2;pointer-events:none;"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,white,transparent);z-index:2;pointer-events:none;"></div>
+
+    <div class="logo-carousel-track">
+      {[...logos, ...logos].map((l, i) => (
+        <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:.375rem;padding:.75rem 1.5rem;filter:grayscale(1);opacity:.5;transition:filter .3s,opacity .3s;cursor:default;" onmouseover="this.style.filter='none';this.style.opacity='1'" onmouseout="this.style.filter='grayscale(1)';this.style.opacity='.5'" aria-hidden={i >= logos.length ? 'true' : 'false'}>
+          <svg viewBox="0 0 120 40" width="120" height="40" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="40" rx="6" fill="#f1f5f9"/>
+            <text x="60" y="16" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="800" fill="#0f172a">{l.name}</text>
+            <text x="60" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="500" fill="#94a3b8">{l.desc}</text>
+          </svg>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

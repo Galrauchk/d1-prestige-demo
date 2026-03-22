@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Breadcrumb from '../components/Breadcrumb.astro'
+---
+<BaseLayout title="Mentions légales — Meridian Groupe" description="Mentions légales du site Meridian Groupe. Éditeur, hébergeur, propriété intellectuelle, données personnelles." noindex={true}>
+  <div class="page-hero" style="padding:5rem 0 3rem;">
+    <div class="container" style="position:relative;z-index:1;">
+      <Breadcrumb items={[{ label: 'Mentions légales' }]} />
+      <h1 style="color:white;font-size:clamp(2rem,4vw,3rem);font-weight:900;margin:1.5rem 0 0;">Mentions légales</h1>
+    </div>
+  </div>
+  <section class="section" style="background:white;">
+    <div class="container" style="max-width:800px;">
+      <div style="display:flex;flex-direction:column;gap:2.5rem;color:#374151;line-height:1.8;">
+        {[
+          { titre: '1. Éditeur du site', contenu: `<p><strong>Raison sociale :</strong> Meridian Groupe SAS<br/><strong>Siège social :</strong> Montpellier, 34000, Occitanie<br/><strong>SIRET :</strong> 000 000 000 00000 (fictif — démo)<br/><strong>Directeur de la publication :</strong> Laurent Dupuis<br/><strong>Téléphone :</strong> 04 67 00 00 00<br/><strong>Email :</strong> contact@meridian-groupe.fr</p>` },
+          { titre: '2. Hébergement', contenu: `<p><strong>Hébergeur :</strong> Netlify, Inc.<br/>44 Montgomery Street, Suite 300, San Francisco, CA 94104 — USA</p>` },
+          { titre: '3. Propriété intellectuelle', contenu: `<p>L'ensemble des éléments composant ce site (textes, images, logos, structure) est protégé par le droit d'auteur. Toute reproduction, même partielle, est strictement interdite sans autorisation préalable.</p>` },
+          { titre: '4. Données personnelles', contenu: `<p>Les données collectées via les formulaires de contact sont traitées conformément au RGPD. Vous disposez d'un droit d'accès, de rectification et de suppression. Pour exercer ces droits : <a href="mailto:contact@meridian-groupe.fr" style="color:var(--electric);">contact@meridian-groupe.fr</a></p>` },
+          { titre: '5. Cookies', contenu: `<p>Ce site utilise des cookies techniques nécessaires à son fonctionnement. Aucun cookie publicitaire n'est déposé sans votre consentement.</p>` },
+          { titre: '6. Responsabilité', contenu: `<p>Meridian Groupe s'efforce de maintenir les informations de ce site à jour et exactes. Toutefois, nous ne pouvons garantir l'exactitude, l'exhaustivité ou l'actualité des informations diffusées.</p>` },
+        ].map(s => (
+          <div>
+            <h2 style="font-size:1.25rem;font-weight:700;color:#0f172a;margin:0 0 .75rem;">{s.titre}</h2>
+            <Fragment set:html={s.contenu} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

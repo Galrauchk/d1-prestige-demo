@@ -1,17 +1,85 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../components/Hero.astro'
+import StatsBar from '../components/StatsBar.astro'
+import MetiersGrid from '../components/MetiersGrid.astro'
+import GroupeSection from '../components/GroupeSection.astro'
+import GalerieSection from '../components/GalerieSection.astro'
+import Temoignages from '../components/Temoignages.astro'
+import Partenaires from '../components/Partenaires.astro'
+import BlogSection from '../components/BlogSection.astro'
+import CtaSection from '../components/CtaSection.astro'
 
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Meridian Groupe",
+  "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200",
+  "description": "Groupe BTP multi-activités en Occitanie depuis 1998. Construction, rénovation, isolation, charpente, couverture, ravalement, étanchéité. 45 collaborateurs, 20 villes.",
+  "url": "https://d1-prestige-demo.netlify.app",
+  "telephone": "+33-4-67-00-00-00",
+  "email": "contact@meridian-groupe.fr",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Montpellier",
+    "addressLocality": "Montpellier",
+    "postalCode": "34000",
+    "addressRegion": "Occitanie",
+    "addressCountry": "FR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 43.6108, "longitude": 3.8767 },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" }
+  ],
+  "priceRange": "€€",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "248" },
+  "sameAs": ["https://www.linkedin.com/company/meridian-groupe"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services BTP",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Construction neuve" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rénovation" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Isolation thermique RGE" } }
+    ]
+  }
+})
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Meridian Groupe intervient dans quelles villes ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Meridian Groupe intervient dans 20 villes d'Occitanie : Montpellier, Nîmes, Perpignan, Carcassonne, Sète, Agde, Béziers, Lunel, Palavas, La Grande-Motte et de nombreuses autres communes de l'Hérault et du Gard." }
+    },
+    {
+      "@type": "Question",
+      "name": "Meridian Groupe est-il certifié RGE ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, Meridian Groupe est certifié RGE (Reconnu Garant de l'Environnement) et Qualibat, vous permettant de bénéficier de MaPrimeRénov' et des autres aides à la rénovation énergétique." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le délai pour obtenir un devis ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Meridian Groupe s'engage à vous fournir un devis détaillé et personnalisé sous 48h ouvrées après votre demande. La visite technique est gratuite et sans engagement." }
+    }
+  ]
+})
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Meridian Groupe — Bâtisseurs de l'Occitanie depuis 1998 | BTP Montpellier"
+  description="Groupe BTP multi-activités en Occitanie. Construction, rénovation, isolation, charpente, couverture, ravalement, étanchéité. 45 experts, 20 villes. Devis gratuit 48h."
+  schema={schema + faqSchema}
+>
+  <Hero />
+  <StatsBar />
+  <MetiersGrid />
+  <GroupeSection />
+  <GalerieSection />
+  <Temoignages />
+  <Partenaires />
+  <BlogSection />
+  <CtaSection />
+</BaseLayout>

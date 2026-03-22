@@ -1,0 +1,245 @@
+---
+import { metiers } from '../data/metiers'
+import { villes } from '../data/villes'
+
+const villesCol1 = villes.slice(0, 10)
+const villesCol2 = villes.slice(10, 20)
+---
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:1rem;">
+    <span style="color:rgba(255,255,255,.75);font-size:.75rem;white-space:nowrap;">
+      📍 Montpellier, 34000
+    </span>
+    <div style="display:flex;align-items:center;gap:1rem;color:rgba(255,255,255,.75);font-size:.75rem;" class="hidden md:flex">
+      <span style="display:flex;align-items:center;gap:.375rem;">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        Certifié RGE
+      </span>
+      <span style="color:rgba(255,255,255,.25)">•</span>
+      <span style="display:flex;align-items:center;gap:.375rem;">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Qualibat
+      </span>
+      <span style="color:rgba(255,255,255,.25)">•</span>
+      <span style="display:flex;align-items:center;gap:.375rem;">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Décennale
+      </span>
+    </div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="tel:0467000000" style="color:rgba(255,255,255,.8);font-size:.75rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:.3rem;" class="hidden sm:flex">
+        <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 15.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 4.8h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 12.1a16 16 0 006 6l.9-.9a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 19.43v-.51z"/></svg>
+        04 67 00 00 00
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" style="color:rgba(255,255,255,.6);transition:color .2s;" aria-label="LinkedIn">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header -->
+<header class="site-header" id="site-header">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:1.5rem;">
+
+    <!-- Logo -->
+    <a href="/" style="display:flex;align-items:center;gap:.75rem;text-decoration:none;flex-shrink:0;">
+      <div style="width:42px;height:42px;border-radius:.5rem;background:linear-gradient(135deg,#00e5ff,#0066ff);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="22" height="22" fill="none" viewBox="0 0 32 32">
+          <path d="M4 28V12L16 4l12 8v16H4z" fill="rgba(10,15,30,.9)" stroke="none"/>
+          <path d="M10 28v-8h12v8" fill="rgba(10,15,30,.7)"/>
+          <path d="M4 28V12L16 4l12 8v16" stroke="white" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-size:1.1rem;font-weight:900;color:white;letter-spacing:-.02em;line-height:1.1;">MERIDIAN</div>
+        <div style="font-size:.65rem;font-weight:300;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;line-height:1;">GROUPE</div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav style="display:flex;align-items:center;gap:.25rem;flex:1;justify-content:center;" class="hidden lg:flex">
+
+      <!-- Nos Métiers -->
+      <div class="nav-item" style="position:relative;">
+        <button style="display:flex;align-items:center;gap:.375rem;padding:.5rem .875rem;color:rgba(255,255,255,.8);font-size:.9rem;font-weight:500;background:transparent;border:none;cursor:pointer;border-radius:.5rem;transition:all .2s;" onmouseenter="this.style.color='white';this.style.background='rgba(255,255,255,.06)'" onmouseleave="this.style.color='rgba(255,255,255,.8)';this.style.background='transparent'">
+          Nos Métiers
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mega-menu" style="left:-100px;width:680px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;">
+            <div>
+              <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);margin-bottom:.75rem;padding:0 .75rem;">Construction</div>
+              {metiers.slice(0,3).map(m => (
+                <a href={`/metiers/${m.slug}`} class="mega-menu-item">
+                  <span style="width:32px;height:32px;background:rgba(0,229,255,.1);border-radius:.375rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="16" height="16" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                  </span>
+                  {m.nom}
+                </a>
+              ))}
+            </div>
+            <div>
+              <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);margin-bottom:.75rem;padding:0 .75rem;">Finitions</div>
+              {metiers.slice(3,6).map(m => (
+                <a href={`/metiers/${m.slug}`} class="mega-menu-item">
+                  <span style="width:32px;height:32px;background:rgba(0,229,255,.1);border-radius:.375rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="16" height="16" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+                  </span>
+                  {m.nom}
+                </a>
+              ))}
+            </div>
+            <div>
+              <div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);margin-bottom:.75rem;padding:0 .75rem;">Enveloppe</div>
+              {metiers.slice(6,8).map(m => (
+                <a href={`/metiers/${m.slug}`} class="mega-menu-item">
+                  <span style="width:32px;height:32px;background:rgba(0,229,255,.1);border-radius:.375rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="16" height="16" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+                  </span>
+                  {m.nom}
+                </a>
+              ))}
+              <div style="margin-top:1.25rem;padding:.875rem;background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,102,255,.05));border:1px solid rgba(0,229,255,.15);border-radius:.75rem;">
+                <div style="font-size:.75rem;font-weight:700;color:white;margin-bottom:.25rem;">Projet clé en main</div>
+                <div style="font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.4;">Un seul interlocuteur pour tous vos corps de métier</div>
+                <a href="/devis" style="display:inline-block;margin-top:.625rem;font-size:.7rem;font-weight:700;color:var(--cyan);text-decoration:none;">Demander un devis →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nos Zones -->
+      <div class="nav-item" style="position:relative;">
+        <button style="display:flex;align-items:center;gap:.375rem;padding:.5rem .875rem;color:rgba(255,255,255,.8);font-size:.9rem;font-weight:500;background:transparent;border:none;cursor:pointer;border-radius:.5rem;transition:all .2s;" onmouseenter="this.style.color='white';this.style.background='rgba(255,255,255,.06)'" onmouseleave="this.style.color='rgba(255,255,255,.8)';this.style.background='transparent'">
+          Nos Zones
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mega-menu" style="left:-120px;width:600px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div>
+              {villesCol1.map(v => (
+                <a href={`/villes/${v.slug}`} class="mega-menu-item" style="justify-content:space-between;">
+                  <span>{v.nom}</span>
+                  <span style="font-size:.7rem;color:rgba(0,229,255,.7);">{v.interventionTime}</span>
+                </a>
+              ))}
+            </div>
+            <div>
+              {villesCol2.map(v => (
+                <a href={`/villes/${v.slug}`} class="mega-menu-item" style="justify-content:space-between;">
+                  <span>{v.nom}</span>
+                  <span style="font-size:.7rem;color:rgba(0,229,255,.7);">{v.interventionTime}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Groupe -->
+      <div class="nav-item" style="position:relative;">
+        <button style="display:flex;align-items:center;gap:.375rem;padding:.5rem .875rem;color:rgba(255,255,255,.8);font-size:.9rem;font-weight:500;background:transparent;border:none;cursor:pointer;border-radius:.5rem;transition:all .2s;" onmouseenter="this.style.color='white';this.style.background='rgba(255,255,255,.06)'" onmouseleave="this.style.color='rgba(255,255,255,.8)';this.style.background='transparent'">
+          Groupe
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="mega-menu" style="left:-60px;width:380px;">
+          <a href="/notre-groupe" class="mega-menu-item">
+            <span style="width:36px;height:36px;background:rgba(0,229,255,.1);border-radius:.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </span>
+            <div><div style="font-weight:600;color:white;">Notre histoire</div><div style="font-size:.8rem;color:rgba(255,255,255,.5);">26 ans au service de l'Occitanie</div></div>
+          </a>
+          <a href="/notre-groupe#valeurs" class="mega-menu-item">
+            <span style="width:36px;height:36px;background:rgba(0,229,255,.1);border-radius:.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <div><div style="font-weight:600;color:white;">Nos valeurs</div><div style="font-size:.8rem;color:rgba(255,255,255,.5);">Qualité, rigueur, proximité</div></div>
+          </a>
+          <a href="/notre-groupe#certifications" class="mega-menu-item">
+            <span style="width:36px;height:36px;background:rgba(0,229,255,.1);border-radius:.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </span>
+            <div><div style="font-weight:600;color:white;">Certifications</div><div style="font-size:.8rem;color:rgba(255,255,255,.5);">RGE, Qualibat, Décennale</div></div>
+          </a>
+          <a href="/recrutement" class="mega-menu-item">
+            <span style="width:36px;height:36px;background:rgba(0,229,255,.1);border-radius:.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" fill="none" stroke="var(--cyan)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div><div style="font-weight:600;color:white;">Recrutement</div><div style="font-size:.8rem;color:rgba(255,255,255,.5);">Rejoignez nos 45 collaborateurs</div></div>
+          </a>
+        </div>
+      </div>
+
+      <a href="/realisations" style="padding:.5rem .875rem;color:rgba(255,255,255,.8);font-size:.9rem;font-weight:500;text-decoration:none;border-radius:.5rem;transition:all .2s;" onmouseenter="this.style.color='white';this.style.background='rgba(255,255,255,.06)'" onmouseleave="this.style.color='rgba(255,255,255,.8)';this.style.background='transparent'">
+        Réalisations
+      </a>
+      <a href="/blog" style="padding:.5rem .875rem;color:rgba(255,255,255,.8);font-size:.9rem;font-weight:500;text-decoration:none;border-radius:.5rem;transition:all .2s;" onmouseenter="this.style.color='white';this.style.background='rgba(255,255,255,.06)'" onmouseleave="this.style.color='rgba(255,255,255,.8)';this.style.background='transparent'">
+        Blog
+      </a>
+    </nav>
+
+    <!-- CTA + Mobile toggle -->
+    <div style="display:flex;align-items:center;gap:.75rem;flex-shrink:0;">
+      <a href="/devis" class="btn-gradient magnetic-btn hidden sm:inline-flex" style="padding:.625rem 1.375rem;font-size:.875rem;">
+        Devis gratuit
+      </a>
+      <button id="mobile-toggle" class="lg:hidden" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;cursor:pointer;color:white;" aria-label="Menu">
+        <svg id="hamburger-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <div style="padding:1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);">
+    <a href="/" style="display:flex;align-items:center;gap:.75rem;text-decoration:none;">
+      <div style="width:36px;height:36px;border-radius:.375rem;background:linear-gradient(135deg,#00e5ff,#0066ff);display:flex;align-items:center;justify-content:center;">
+        <svg width="18" height="18" fill="none" viewBox="0 0 32 32"><path d="M4 28V12L16 4l12 8v16H4z" fill="rgba(10,15,30,.9)"/><path d="M4 28V12L16 4l12 8v16" stroke="white" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <span style="font-size:1rem;font-weight:900;color:white;">MERIDIAN GROUPE</span>
+    </a>
+    <button id="mobile-close" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;cursor:pointer;color:white;" aria-label="Fermer">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div style="padding:1.5rem;display:flex;flex-direction:column;gap:.25rem;">
+    <p style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--cyan);padding:.5rem 0;">NOS MÉTIERS</p>
+    {metiers.map(m => (
+      <a href={`/metiers/${m.slug}`} style="padding:.75rem 1rem;color:rgba(255,255,255,.8);font-size:.9375rem;font-weight:500;text-decoration:none;border-radius:.5rem;transition:all .2s;" onclick="document.getElementById('mobile-drawer').classList.remove('open')">{m.nom}</a>
+    ))}
+    <div style="height:1px;background:rgba(255,255,255,.08);margin:.75rem 0;"></div>
+    <a href="/notre-groupe" style="padding:.75rem 1rem;color:rgba(255,255,255,.8);font-size:.9375rem;font-weight:500;text-decoration:none;border-radius:.5rem;">Notre Groupe</a>
+    <a href="/realisations" style="padding:.75rem 1rem;color:rgba(255,255,255,.8);font-size:.9375rem;font-weight:500;text-decoration:none;border-radius:.5rem;">Réalisations</a>
+    <a href="/blog" style="padding:.75rem 1rem;color:rgba(255,255,255,.8);font-size:.9375rem;font-weight:500;text-decoration:none;border-radius:.5rem;">Blog</a>
+    <a href="/contact" style="padding:.75rem 1rem;color:rgba(255,255,255,.8);font-size:.9375rem;font-weight:500;text-decoration:none;border-radius:.5rem;">Contact</a>
+    <div style="height:1px;background:rgba(255,255,255,.08);margin:.75rem 0;"></div>
+    <a href="/devis" class="btn-gradient" style="text-align:center;justify-content:center;">Devis gratuit 48h</a>
+    <a href="tel:0467000000" style="margin-top:.75rem;padding:.75rem 1rem;color:rgba(255,255,255,.7);font-size:.875rem;text-decoration:none;text-align:center;display:block;">📞 04 67 00 00 00</a>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle')
+  const close  = document.getElementById('mobile-close')
+  const drawer = document.getElementById('mobile-drawer')
+
+  toggle?.addEventListener('click', () => {
+    drawer?.classList.add('open')
+    drawer?.setAttribute('aria-hidden', 'false')
+    document.body.style.overflow = 'hidden'
+  })
+  const closeFn = () => {
+    drawer?.classList.remove('open')
+    drawer?.setAttribute('aria-hidden', 'true')
+    document.body.style.overflow = ''
+  }
+  close?.addEventListener('click', closeFn)
+  drawer?.addEventListener('click', (e) => {
+    if (e.target === drawer) closeFn()
+  })
+</script>

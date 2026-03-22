@@ -1,0 +1,106 @@
+---
+const realisations = [
+  { img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80', titre: 'Villa contemporaine', ville: 'Montpellier', cat: 'construction', h: '280px' },
+  { img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80', titre: 'Immeuble résidentiel', ville: 'Nîmes', cat: 'construction', h: '200px' },
+  { img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80', titre: 'Rénovation maison de maître', ville: 'Montpellier', cat: 'renovation', h: '240px' },
+  { img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80', titre: 'Ravalement façade', ville: 'Béziers', cat: 'btp', h: '200px' },
+  { img: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&q=80', titre: 'Programme neuf R+2', ville: 'Castelnau-le-Lez', cat: 'construction', h: '320px' },
+  { img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=600&q=80', titre: 'ITE + ravalement', ville: 'Sète', cat: 'isolation', h: '200px' },
+  { img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80', titre: 'Rénovation bureau', ville: 'Montpellier', cat: 'renovation', h: '220px' },
+  { img: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80', titre: 'Espace tertiaire', ville: 'Nîmes', cat: 'btp', h: '260px' },
+  { img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&q=80', titre: 'Réhabilitation industrielle', ville: 'Béziers', cat: 'renovation', h: '200px' },
+  { img: 'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=600&q=80', titre: 'Maison BBC', ville: 'Lattes', cat: 'isolation', h: '280px' },
+  { img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80', titre: 'Appartements prestige', ville: 'Perpignan', cat: 'construction', h: '220px' },
+  { img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80', titre: 'Chantier gros œuvre', ville: 'Grabels', cat: 'btp', h: '200px' },
+]
+
+const categories = [
+  { key: 'tous', label: 'Tous les projets' },
+  { key: 'construction', label: 'Construction' },
+  { key: 'renovation', label: 'Rénovation' },
+  { key: 'btp', label: 'BTP' },
+  { key: 'isolation', label: 'Isolation' },
+]
+---
+
+<section class="section" style="background:#f8fafc;" id="realisations">
+  <div class="container">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:3rem;" class="reveal-element">
+      <div>
+        <div class="section-label">Nos réalisations</div>
+        <h2 style="font-size:clamp(1.875rem,3.5vw,2.75rem);font-weight:800;color:#0f172a;margin:0;max-width:500px;">
+          2 400+ chantiers,<br/>
+          <span style="background:linear-gradient(135deg,#00e5ff,#0066ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">une signature</span>
+        </h2>
+      </div>
+      <a href="/realisations" class="btn-ghost-dark">
+        Voir toutes nos réalisations →
+      </a>
+    </div>
+
+    <!-- Filter buttons -->
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem;" class="reveal-element" id="gallery-filters">
+      {categories.map((c, i) => (
+        <button
+          class={`filter-btn${i === 0 ? ' active' : ''}`}
+          data-filter={c.key}
+          style={`padding:.5rem 1.25rem;border-radius:9999px;font-size:.8125rem;font-weight:600;cursor:pointer;transition:all .2s;border:1.5px solid;${i === 0 ? 'background:linear-gradient(135deg,#00e5ff,#0066ff);color:#0a0f1e;border-color:transparent;' : 'background:transparent;color:#374151;border-color:#e2e8f0;'}`}
+        >
+          {c.label}
+        </button>
+      ))}
+    </div>
+
+    <!-- Gallery masonry 3 col -->
+    <div style="columns:1;gap:1rem;" class="gallery-masonry" id="gallery-grid">
+      {realisations.map((r, i) => (
+        <div
+          class="gallery-item reveal-element"
+          style={`margin-bottom:1rem;break-inside:avoid;transition-delay:${(i % 4) * 80}ms;`}
+          data-cat={r.cat}
+        >
+          <img src={r.img} alt={`${r.titre} — ${r.ville}`} loading="lazy" style={`width:100%;height:${r.h};object-fit:cover;`} />
+          <div class="gallery-overlay">
+            <span style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan);margin-bottom:.375rem;">{r.ville}</span>
+            <h4 style="color:white;font-size:1rem;font-weight:700;margin:0;">{r.titre}</h4>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+@media(min-width:640px){ .gallery-masonry { columns: 2 !important; } }
+@media(min-width:1024px){ .gallery-masonry { columns: 3 !important; } }
+.filter-btn.active {
+  background: linear-gradient(135deg, #00e5ff, #0066ff) !important;
+  color: #0a0f1e !important;
+  border-color: transparent !important;
+}
+</style>
+
+<script>
+const filterBtns = document.querySelectorAll('.filter-btn')
+const galleryItems = document.querySelectorAll('#gallery-grid .gallery-item')
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'))
+    btn.classList.add('active')
+    const filter = btn.getAttribute('data-filter')
+    galleryItems.forEach((item: Element) => {
+      const el = item as HTMLElement
+      if (filter === 'tous' || el.dataset.cat === filter) {
+        el.style.display = 'block'
+        el.style.opacity = '1'
+        el.style.transform = 'scale(1)'
+      } else {
+        el.style.opacity = '0'
+        el.style.transform = 'scale(0.95)'
+        setTimeout(() => { el.style.display = 'none' }, 300)
+      }
+    })
+  })
+})
+</script>

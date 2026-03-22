@@ -1,0 +1,6 @@
+---
+import MetierLayout from '../../layouts/MetierLayout.astro'
+import { getMetier } from '../../data/metiers'
+const metier = getMetier('ravalement')!
+---
+<MetierLayout metier={metier} />

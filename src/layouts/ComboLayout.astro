@@ -1,0 +1,113 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import Breadcrumb from '../components/Breadcrumb.astro'
+import CtaSection from '../components/CtaSection.astro'
+import type { Ville } from '../data/villes'
+import type { Metier } from '../data/metiers'
+
+interface Props { ville: Ville; metier: Metier }
+const { ville, metier } = Astro.props
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `${metier.nom} à ${ville.nom}`,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Meridian Groupe",
+    "telephone": "+33-4-67-00-00-00",
+    "address": { "@type": "PostalAddress", "addressLocality": ville.nom, "postalCode": ville.codePostal, "addressCountry": "FR" }
+  },
+  "description": `${metier.nom} à ${ville.nom} par Meridian Groupe. ${metier.description} Intervention sous ${ville.interventionTime}.`,
+  "areaServed": { "@type": "City", "name": ville.nom },
+  "geo": { "@type": "GeoCoordinates", "latitude": ville.lat, "longitude": ville.lng }
+})
+---
+
+<BaseLayout
+  title={`${metier.nom} à ${ville.nom} (${ville.codePostal}) — Meridian Groupe`}
+  description={`Expert en ${metier.nomCourt.toLowerCase()} à ${ville.nom} (${ville.codePostal}). ${metier.description} Certifié ${metier.certifications[0]}. Intervention ${ville.interventionTime}. Devis gratuit 48h.`}
+  canonical={`https://d1-prestige-demo.netlify.app/${ville.slug}/${metier.slug}`}
+  schema={schema}
+>
+  <!-- Hero -->
+  <div style="position:relative;overflow:hidden;min-height:460px;display:flex;align-items:flex-end;">
+    <img src={metier.image} alt={`${metier.nom} ${ville.nom}`} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,15,30,.2) 0%,rgba(10,15,30,.88) 100%);"></div>
+    <div class="container" style="position:relative;z-index:1;padding-bottom:3.5rem;width:100%;">
+      <Breadcrumb items={[
+        { label: ville.nom, href: `/villes/${ville.slug}` },
+        { label: metier.nom }
+      ]} />
+      <div style="max-width:620px;margin-top:1.5rem;">
+        <div class="section-label">{ville.nom} · {ville.departement} · Intervention {ville.interventionTime}</div>
+        <h1 style="color:white;font-size:clamp(2rem,4.5vw,3.5rem);font-weight:900;margin:0 0 1rem;line-height:1.1;">
+          {metier.nom}<br/>
+          <span style="background:linear-gradient(135deg,#00e5ff,#0066ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">à {ville.nom}</span>
+        </h1>
+        <p style="color:rgba(255,255,255,.75);font-size:1rem;margin:0 0 1.75rem;line-height:1.7;">{metier.description}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+          <a href="/devis" class="btn-gradient">Devis gratuit 48h</a>
+          <a href="tel:0467000000" class="btn-outline">04 67 00 00 00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr;gap:3rem;" class="combo-grid">
+        <div class="reveal-element">
+          <div class="section-label">Notre expertise locale</div>
+          <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;color:#0f172a;margin:0 0 1.25rem;">
+            Meridian Groupe, expert en {metier.nomCourt.toLowerCase()} à {ville.nom}
+          </h2>
+          <p style="color:#374151;line-height:1.8;margin-bottom:1.25rem;">
+            {metier.descriptionLongue}
+          </p>
+          <p style="color:#374151;line-height:1.8;margin-bottom:2rem;">
+            À {ville.nom}, nos équipes interviennent dans un délai de {ville.interventionTime} depuis notre siège montpelliérain. Notre connaissance du territoire {ville.departement} et des contraintes climatiques méditerranéennes nous permet d'adapter chaque prestation au contexte local.
+          </p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.625rem;">
+            {metier.prestations.map(p => (
+              <div style="display:flex;align-items:center;gap:.5rem;padding:.625rem .875rem;background:#f8fafc;border-radius:.5rem;">
+                <svg width="12" height="12" fill="none" stroke="var(--cyan)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>
+                <span style="font-size:.8125rem;font-weight:600;color:#374151;">{p}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="reveal-element delay-200">
+          <div style="background:#f8fafc;border-radius:1.25rem;padding:2rem;border:1.5px solid #f1f5f9;">
+            <h3 style="font-weight:700;color:#0f172a;font-size:1.125rem;margin:0 0 1.5rem;">Intervention à {ville.nom}</h3>
+            {[
+              { label: 'Délai d\'intervention', val: ville.interventionTime },
+              { label: 'Devis', val: 'Gratuit sous 48h' },
+              { label: 'Zone', val: `${ville.nom} et environs` },
+              { label: 'Certifications', val: metier.certifications.join(', ') },
+              { label: 'Garantie', val: 'Décennale 10 ans' },
+            ].map(s => (
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid #f1f5f9;">
+                <span style="color:#94a3b8;font-size:.875rem;">{s.label}</span>
+                <span style="font-weight:700;color:#0f172a;font-size:.875rem;text-align:right;max-width:60%;">{s.val}</span>
+              </div>
+            ))}
+            <a href="/devis" class="btn-gradient" style="width:100%;justify-content:center;margin-top:1.5rem;">
+              Demander un devis gratuit
+            </a>
+            <a href="tel:0467000000" style="display:block;text-align:center;margin-top:.875rem;color:#94a3b8;font-size:.875rem;text-decoration:none;">
+              ou appelez le <strong style="color:#0f172a;">04 67 00 00 00</strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+@media(min-width:1024px){ .combo-grid { grid-template-columns: 3fr 2fr !important; } }
+</style>

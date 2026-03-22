@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Breadcrumb from '../../components/Breadcrumb.astro'
+import CtaSection from '../../components/CtaSection.astro'
+import { articles, getArticle } from '../../data/blog'
+
+export function getStaticPaths() {
+  return articles.map(a => ({ params: { slug: a.slug } }))
+}
+
+const { slug } = Astro.params
+const article = getArticle(slug)!
+const related = articles.filter(a => a.slug !== slug).slice(0, 3)
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.titre,
+  "image": article.image,
+  "author": { "@type": "Person", "name": article.auteur },
+  "publisher": { "@type": "Organization", "name": "Meridian Groupe", "logo": { "@type": "ImageObject", "url": "https://d1-prestige-demo.netlify.app/favicon.svg" } },
+  "datePublished": article.dateISO,
+  "description": article.extrait
+})
+---
+
+<BaseLayout
+  title={`${article.titre} — Blog Meridian Groupe`}
+  description={article.extrait.slice(0, 155)}
+  ogImage={article.image}
+  schema={schema}
+>
+  <!-- Article hero -->
+  <div style="position:relative;overflow:hidden;height:480px;display:flex;align-items:flex-end;">
+    <img src={article.image} alt={article.titre} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high" />
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,15,30,.2) 0%,rgba(10,15,30,.85) 100%);"></div>
+    <div class="container" style="position:relative;z-index:1;padding-bottom:3rem;width:100%;">
+      <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: article.titre }]} />
+      <div style="max-width:800px;margin-top:1.5rem;">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-bottom:1.25rem;">
+          <span style="padding:.3rem .875rem;background:rgba(0,229,255,.15);border:1px solid rgba(0,229,255,.3);border-radius:9999px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan);">{article.categorie}</span>
+          <span style="color:rgba(255,255,255,.5);font-size:.875rem;">{article.date}</span>
+          <span style="color:rgba(255,255,255,.5);font-size:.875rem;">{article.tempsLecture} min de lecture</span>
+        </div>
+        <h1 style="color:white;font-size:clamp(1.75rem,4vw,3rem);font-weight:700;font-family:'Playfair Display',serif;font-style:italic;margin:0;line-height:1.25;">{article.titre}</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <section style="background:white;padding:4rem 0;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr;gap:4rem;" class="article-grid">
+        <!-- Main content -->
+        <div style="min-width:0;">
+          <!-- Author -->
+          <div style="display:flex;align-items:center;gap:1rem;padding:1.5rem;background:#f8fafc;border-radius:1rem;border:1.5px solid #f1f5f9;margin-bottom:3rem;">
+            <img src={article.auteurPhoto} alt={article.auteur} loading="lazy" style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,229,255,.3);" />
+            <div>
+              <div style="font-weight:700;color:#0f172a;font-size:.9375rem;">{article.auteur}</div>
+              <div style="font-size:.8rem;color:var(--electric);font-weight:600;">{article.auteurRole} — Meridian Groupe</div>
+            </div>
+          </div>
+          <!-- Article body -->
+          <div style="color:#374151;font-size:1.0625rem;line-height:1.85;max-width:720px;" class="article-content">
+            <p style="font-size:1.125rem;color:#0f172a;font-weight:500;line-height:1.7;margin-bottom:2rem;">{article.extrait}</p>
+            <Fragment set:html={article.contenu} />
+          </div>
+          <!-- Tags -->
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid #f1f5f9;">
+            <span style="font-size:.75rem;font-weight:600;color:#94a3b8;">Tags :</span>
+            {[article.categorie, 'BTP', 'Occitanie', 'Meridian Groupe'].map(t => (
+              <span style="padding:.25rem .75rem;background:#f1f5f9;border-radius:9999px;font-size:.75rem;font-weight:600;color:#374151;">{t}</span>
+            ))}
+          </div>
+        </div>
+        <!-- Sidebar -->
+        <div>
+          <div style="position:sticky;top:120px;display:flex;flex-direction:column;gap:1.5rem;">
+            <div style="padding:1.75rem;background:#f8fafc;border-radius:1rem;border:1.5px solid #f1f5f9;">
+              <h3 style="font-weight:700;color:#0f172a;font-size:1rem;margin:0 0 1rem;">Besoin d'un devis ?</h3>
+              <p style="font-size:.875rem;color:#374151;margin:0 0 1.25rem;line-height:1.6;">Nos experts vous répondent sous 48h. Gratuit, sans engagement.</p>
+              <a href="/devis" class="btn-gradient" style="width:100%;justify-content:center;">Devis gratuit</a>
+              <a href="tel:0467000000" style="display:block;text-align:center;margin-top:.75rem;font-size:.875rem;color:#94a3b8;text-decoration:none;">04 67 00 00 00</a>
+            </div>
+            <!-- Related articles -->
+            <div>
+              <h3 style="font-weight:700;color:#0f172a;font-size:1rem;margin:0 0 1rem;">Articles similaires</h3>
+              <div style="display:flex;flex-direction:column;gap:1rem;">
+                {related.map(a => (
+                  <a href={`/blog/${a.slug}`} style="display:flex;gap:.875rem;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">
+                    <img src={a.image} alt={a.titre} loading="lazy" style="width:64px;height:64px;object-fit:cover;border-radius:.5rem;flex-shrink:0;" />
+                    <div>
+                      <span style="font-size:.65rem;font-weight:700;color:var(--electric);text-transform:uppercase;">{a.categorie}</span>
+                      <p style="font-size:.8125rem;font-weight:600;color:#0f172a;margin:.25rem 0 0;line-height:1.4;">{a.titre}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+@media(min-width:1024px){ .article-grid { grid-template-columns: 2fr 1fr !important; } }
+.article-content h2 { font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 2.5rem 0 1rem; }
+.article-content h3 { font-size: 1.2rem; font-weight: 700; color: #0f172a; margin: 2rem 0 .75rem; }
+.article-content p { margin: 0 0 1.5rem; }
+.article-content ul { padding-left: 1.5rem; margin: 0 0 1.5rem; }
+.article-content ul li { margin-bottom: .5rem; }
+</style>

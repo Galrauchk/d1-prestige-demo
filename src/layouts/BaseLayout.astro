@@ -1,0 +1,203 @@
+---
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description: string
+  canonical?: string
+  ogImage?: string
+  schema?: string
+  noindex?: boolean
+  bodyClass?: string
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+  schema,
+  noindex = false,
+  bodyClass = ''
+} = Astro.props
+
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {noindex ? <meta name="robots" content="noindex,nofollow" /> : <meta name="robots" content="index,follow" />}
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="language" content="fr" />
+  <link rel="alternate" hreflang="fr" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Meridian Groupe" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Fonts preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Generator -->
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Schema.org -->
+  {schema && <script type="application/ld+json" set:html={schema} />}
+
+  <!-- Default Organization schema on every page -->
+  <script type="application/ld+json">{
+    JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Meridian Groupe",
+      "url": "https://d1-prestige-demo.netlify.app",
+      "logo": "https://d1-prestige-demo.netlify.app/favicon.svg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+33-4-67-00-00-00",
+        "contactType": "customer service",
+        "availableLanguage": "French"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Montpellier",
+        "addressLocality": "Montpellier",
+        "postalCode": "34000",
+        "addressCountry": "FR"
+      },
+      "sameAs": ["https://www.linkedin.com/company/meridian-groupe"]
+    })
+  }</script>
+</head>
+<body class={bodyClass}>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <!-- Intersection Observer: scroll reveal + count-up -->
+  <script>
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed')
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    )
+    document.querySelectorAll('.reveal-element').forEach(el => revealObserver.observe(el))
+
+    // Image reveal
+    const imgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed')
+            imgObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    document.querySelectorAll('.image-reveal').forEach(el => imgObserver.observe(el))
+
+    // Count-up animation
+    function animateCount(el: Element) {
+      const target = parseFloat(el.getAttribute('data-count') || '0')
+      const isDecimal = el.getAttribute('data-decimal') === 'true'
+      const suffix = el.getAttribute('data-suffix') || ''
+      const prefix = el.getAttribute('data-prefix') || ''
+      const duration = 2000
+      const start = performance.now()
+
+      function update(now: number) {
+        const elapsed = now - start
+        const progress = Math.min(elapsed / duration, 1)
+        const eased = 1 - Math.pow(1 - progress, 3)
+        const current = target * eased
+        el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString('fr-FR')) + suffix
+        if (progress < 1) requestAnimationFrame(update)
+      }
+      requestAnimationFrame(update)
+    }
+
+    const countObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target)
+            countObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+    document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el))
+
+    // Progress bars
+    const progressObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const fill = entry.target as HTMLElement
+            fill.classList.add('animated')
+            progressObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+    document.querySelectorAll('.progress-bar-fill').forEach(el => progressObserver.observe(el))
+
+    // Header scroll shadow
+    const header = document.querySelector('.site-header')
+    window.addEventListener('scroll', () => {
+      header?.classList.toggle('scrolled', window.scrollY > 20)
+    }, { passive: true })
+
+    // Magnetic buttons
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e: Event) => {
+        const me = e as MouseEvent
+        const rect = (btn as HTMLElement).getBoundingClientRect()
+        const x = me.clientX - rect.left - rect.width / 2
+        const y = me.clientY - rect.top - rect.height / 2
+        ;(btn as HTMLElement).style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`
+      })
+      btn.addEventListener('mouseleave', () => {
+        ;(btn as HTMLElement).style.transform = ''
+      })
+    })
+  </script>
+</body>
+</html>

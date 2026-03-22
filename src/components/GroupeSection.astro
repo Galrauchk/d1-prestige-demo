@@ -1,0 +1,87 @@
+---
+const skills = [
+  { label: 'Construction neuve', percent: 95 },
+  { label: 'Rénovation', percent: 90 },
+  { label: 'Isolation thermique', percent: 88 },
+  { label: 'Gros œuvre', percent: 85 },
+]
+---
+
+<section class="section" style="background:white;overflow:hidden;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr;gap:4rem;align-items:center;" class="groupe-grid">
+
+      <!-- Image column -->
+      <div style="position:relative;" class="reveal-element">
+        <div style="border-radius:1.5rem;overflow:hidden;position:relative;">
+          <img
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=85"
+            alt="Équipe Meridian Groupe — BTP Occitanie"
+            loading="lazy"
+            class="image-reveal"
+            style="width:100%;height:100%;object-fit:cover;min-height:460px;"
+          />
+        </div>
+        <!-- Floating badge -->
+        <div style="position:absolute;bottom:2rem;right:-1rem;background:white;border-radius:1rem;padding:1.25rem 1.5rem;box-shadow:0 20px 60px rgba(0,0,0,.15);display:flex;align-items:center;gap:.875rem;max-width:220px;" class="hidden md:flex">
+          <div style="width:48px;height:48px;background:linear-gradient(135deg,#00e5ff,#0066ff);border-radius:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <div>
+            <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);line-height:1;">Certifié</div>
+            <div style="font-size:.9375rem;font-weight:800;color:#0f172a;line-height:1.2;">Qualibat RGE</div>
+            <div style="font-size:.7rem;color:#94a3b8;margin-top:.125rem;">depuis 2012</div>
+          </div>
+        </div>
+        <!-- Decorative element -->
+        <div style="position:absolute;top:-1.5rem;left:-1.5rem;width:80px;height:80px;background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,102,255,.1));border-radius:1rem;z-index:-1;" class="hidden md:block"></div>
+      </div>
+
+      <!-- Text column -->
+      <div class="reveal-element delay-200">
+        <div class="section-label">Notre histoire</div>
+        <h2 class="h2-serif" style="font-size:clamp(1.75rem,3.5vw,2.75rem);color:#0f172a;margin:0 0 1.5rem;line-height:1.2;">
+          Près de 3 décennies au service du patrimoine occitan
+        </h2>
+        <p style="color:#374151;line-height:1.75;margin-bottom:1rem;">
+          Fondé en 1998 à Montpellier par trois artisans passionnés, Meridian Groupe est devenu en 26 ans le partenaire BTP de référence de l'Occitanie. Notre croissance repose sur un principe simple : la qualité d'exécution prime toujours sur la quantité.
+        </p>
+        <p style="color:#374151;line-height:1.75;margin-bottom:1rem;">
+          Aujourd'hui forts de 45 collaborateurs experts, nous intervenons sur 20 villes, de Montpellier à Perpignan, de Nîmes à Béziers. Chaque chantier est piloté avec la même rigueur, qu'il s'agisse d'une villa individuelle ou d'un programme résidentiel de plusieurs milliers de m².
+        </p>
+        <p style="color:#374151;line-height:1.75;margin-bottom:2rem;">
+          Notre engagement : un devis sous 48h, une équipe dédiée, un suivi de chantier transparent et des finitions impeccables. C'est ce qui nous vaut 98% de clients satisfaits depuis 26 ans.
+        </p>
+
+        <!-- Skills bars -->
+        <div style="display:flex;flex-direction:column;gap:1.25rem;margin-bottom:2rem;">
+          {skills.map(skill => (
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+                <span style="font-size:.875rem;font-weight:600;color:#0f172a;">{skill.label}</span>
+                <span style="font-size:.8125rem;font-weight:700;color:var(--cyan);">{skill.percent}%</span>
+              </div>
+              <div class="progress-bar-track-light">
+                <div
+                  class="progress-bar-fill"
+                  style={`--target-width:${skill.percent}%;background:linear-gradient(135deg,#00e5ff,#0066ff);height:8px;border-radius:9999px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1);`}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <a href="/notre-groupe" style="display:inline-flex;align-items:center;gap:.5rem;color:var(--electric);font-size:.9375rem;font-weight:700;text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='.75rem'" onmouseout="this.style.gap='.5rem'">
+          Notre histoire complète
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@media(min-width:1024px){
+  .groupe-grid { grid-template-columns: 2fr 3fr !important; }
+}
+</style>

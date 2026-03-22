@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Breadcrumb from '../components/Breadcrumb.astro'
+import CtaSection from '../components/CtaSection.astro'
+
+const projets = [
+  { img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80', titre: 'Villa contemporaine R+1', ville: 'Montpellier', cat: 'construction', surface: '280 m²', annee: '2024', desc: 'Construction d\'une villa bioclimatique avec toit-terrasse végétalisé.' },
+  { img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80', titre: 'Immeuble résidentiel 12 logements', ville: 'Nîmes', cat: 'construction', surface: '1 200 m²', annee: '2023', desc: 'Programme neuf RT2020, livré en 18 mois.' },
+  { img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80', titre: 'Rénovation maison de maître', ville: 'Montpellier', cat: 'renovation', surface: '320 m²', annee: '2024', desc: 'Réhabilitation complète d\'un bien patrimonial du XIXe siècle.' },
+  { img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80', titre: 'Ravalement façade immeuble', ville: 'Béziers', cat: 'ravalement', surface: '600 m²', annee: '2023', desc: 'Ravalement complet ITE + traitement des fissures.' },
+  { img: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80', titre: 'Résidence Les Pins — R+3', ville: 'Castelnau-le-Lez', cat: 'construction', surface: '2 400 m²', annee: '2023', desc: '18 logements collectifs avec espaces verts partagés.' },
+  { img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=800&q=80', titre: 'ITE Copropriété 24 logements', ville: 'Sète', cat: 'isolation', surface: '1 100 m²', annee: '2024', desc: 'Isolation par l\'extérieur + ravalement, -40% de facture énergie.' },
+  { img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80', titre: 'Réaménagement bureaux 400m²', ville: 'Montpellier', cat: 'renovation', surface: '400 m²', annee: '2024', desc: 'Open space moderne, cloisons sèches, faux plafonds.' },
+  { img: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80', titre: 'Siège social entreprise logistique', ville: 'Nîmes', cat: 'construction', surface: '1 800 m²', annee: '2022', desc: 'Bâtiment tertiaire clé en main, 8 mois de chantier.' },
+  { img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=80', titre: 'Réhabilitation entrepôt industriel', ville: 'Béziers', cat: 'renovation', surface: '3 200 m²', annee: '2022', desc: 'Conversion en espace de co-working et pôle créatif.' },
+  { img: 'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=800&q=80', titre: 'Maison passive BBC', ville: 'Lattes', cat: 'isolation', surface: '180 m²', annee: '2024', desc: 'Consommation énergétique quasi nulle, labellisée E+C-.' },
+  { img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80', titre: 'Résidence prestige bord de mer', ville: 'Palavas', cat: 'construction', surface: '850 m²', annee: '2023', desc: 'Immeuble de 6 appartements avec vue mer, finitions luxe.' },
+  { img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80', titre: 'Entrepôt logistique gros œuvre', ville: 'Grabels', cat: 'construction', surface: '5 000 m²', annee: '2022', desc: 'Structure béton armé, dalle industrielle.' },
+  { img: 'https://images.unsplash.com/photo-1562516155-e0c1ee44059b?w=800&q=80', titre: 'Réfection toiture tuiles canal', ville: 'Carcassonne', cat: 'couverture', surface: '340 m²', annee: '2024', desc: 'Remplacement complet sur bastide du XVIIIe siècle.' },
+  { img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80', titre: 'Extension ossature bois', ville: 'Castelnau-le-Lez', cat: 'construction', surface: '85 m²', annee: '2024', desc: 'Extension contemporaine bois sur maison existante.' },
+  { img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80', titre: 'Programme 8 villas', ville: 'La Grande-Motte', cat: 'construction', surface: '1 600 m²', annee: '2023', desc: 'Lotissement privé, 8 villas individuelles BBC.' },
+  { img: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80', titre: 'Traitement étanchéité toiture-terrasse', ville: 'Montpellier', cat: 'etancheite', surface: '220 m²', annee: '2024', desc: 'Membrane EPDM + protection gravillons, garantie 10 ans.' },
+]
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Réalisations Meridian Groupe",
+  "itemListElement": projets.slice(0,5).map((p, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": p.titre,
+    "description": p.desc
+  }))
+})
+---
+
+<BaseLayout
+  title="Nos Réalisations — Meridian Groupe | 2 400+ chantiers en Occitanie"
+  description="Découvrez nos réalisations en construction, rénovation, isolation, couverture et ravalement en Occitanie. Plus de 2 400 chantiers réalisés depuis 1998."
+  schema={schema}
+>
+  <div class="page-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <Breadcrumb items={[{ label: 'Réalisations' }]} />
+      <div style="max-width:650px;margin-top:2rem;">
+        <div class="section-label">Depuis 1998</div>
+        <h1 style="color:white;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:0 0 1.25rem;line-height:1.1;">
+          2 400+ chantiers<br/>
+          <span style="background:linear-gradient(135deg,#00e5ff,#0066ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">en Occitanie</span>
+        </h1>
+        <p style="color:rgba(255,255,255,.75);font-size:1.0625rem;max-width:520px;line-height:1.7;">
+          Chaque réalisation est une vitrine de notre savoir-faire. Découvrez une sélection de nos projets marquants.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="background:#f8fafc;">
+    <div class="container">
+      <!-- Filters -->
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:3rem;" id="real-filters">
+        {['tous', 'construction', 'renovation', 'isolation', 'ravalement', 'couverture', 'etancheite'].map((cat, i) => (
+          <button class={`filter-btn${i===0?' active':''}`} data-filter={cat} style={`padding:.5rem 1.25rem;border-radius:9999px;font-size:.8125rem;font-weight:600;cursor:pointer;transition:all .2s;border:1.5px solid;${i===0?'background:linear-gradient(135deg,#00e5ff,#0066ff);color:#0a0f1e;border-color:transparent;':'background:transparent;color:#374151;border-color:#e2e8f0;'}`}>
+            {cat === 'tous' ? 'Tous les projets' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grid -->
+      <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:2rem;" class="real-grid" id="real-grid">
+        {projets.map((p, i) => (
+          <article class="reveal-element" data-cat={p.cat} style={`background:white;border-radius:1.25rem;overflow:hidden;transition-delay:${(i%3)*80}ms;transition:transform .3s,box-shadow .3s;`} onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(0,0,0,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div style="position:relative;overflow:hidden;height:220px;">
+              <img src={p.img} alt={`${p.titre} — ${p.ville}`} loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .6s;" onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform=''"/>
+              <div style="position:absolute;top:1rem;left:1rem;display:flex;gap:.5rem;">
+                <span style="padding:.25rem .75rem;background:rgba(10,15,30,.8);backdrop-filter:blur(8px);border-radius:9999px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:white;">{p.cat}</span>
+              </div>
+              <div style="position:absolute;bottom:1rem;right:1rem;">
+                <span style="padding:.25rem .75rem;background:rgba(0,229,255,.9);border-radius:9999px;font-size:.7rem;font-weight:700;color:#0a0f1e;">{p.annee}</span>
+              </div>
+            </div>
+            <div style="padding:1.5rem;">
+              <h3 style="font-weight:700;color:#0f172a;font-size:1.0625rem;margin:0 0 .5rem;">{p.titre}</h3>
+              <p style="color:#374151;font-size:.875rem;margin:0 0 1rem;line-height:1.6;">{p.desc}</p>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:.8rem;color:#94a3b8;display:flex;align-items:center;gap:.375rem;">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  {p.ville}
+                </span>
+                <span style="font-size:.8rem;font-weight:600;color:var(--electric);">{p.surface}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+@media(min-width:640px){ .real-grid { grid-template-columns: repeat(2,1fr) !important; } }
+@media(min-width:1024px){ .real-grid { grid-template-columns: repeat(3,1fr) !important; } }
+.filter-btn.active { background: linear-gradient(135deg,#00e5ff,#0066ff) !important; color: #0a0f1e !important; border-color: transparent !important; }
+</style>
+
+<script>
+const btns = document.querySelectorAll('#real-filters .filter-btn')
+const items = document.querySelectorAll('#real-grid article')
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btns.forEach(b => b.classList.remove('active'))
+    btn.classList.add('active')
+    const f = btn.getAttribute('data-filter')
+    items.forEach((el: Element) => {
+      const item = el as HTMLElement
+      if (f === 'tous' || item.dataset.cat === f) {
+        item.style.display = ''
+      } else {
+        item.style.display = 'none'
+      }
+    })
+  })
+})
+</script>

@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Breadcrumb from '../components/Breadcrumb.astro'
+---
+
+<BaseLayout
+  title="Devis Gratuit — Meridian Groupe | Réponse sous 48h"
+  description="Demandez votre devis gratuit à Meridian Groupe. Formulaire multi-étapes, réponse sous 48h. Construction, rénovation, isolation, couverture en Occitanie."
+>
+  <div class="page-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <Breadcrumb items={[{ label: 'Devis gratuit' }]} />
+      <div style="max-width:600px;margin-top:2rem;">
+        <div class="shimmer-badge" style="margin-bottom:1.25rem;display:inline-flex;">Réponse garantie sous 48h ouvrées</div>
+        <h1 style="color:white;font-size:clamp(2.25rem,5vw,3.75rem);font-weight:900;margin:0 0 1rem;line-height:1.1;">
+          Votre devis gratuit
+        </h1>
+        <p style="color:rgba(255,255,255,.75);font-size:1.0625rem;line-height:1.7;">
+          Remplissez ce formulaire en 3 étapes. Nous vous recontactons dans les 48h ouvrées pour planifier une visite technique gratuite.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="background:#f8fafc;">
+    <div class="container" style="max-width:780px;">
+      <!-- Steps indicator -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:3.5rem;" class="reveal-element">
+        {[
+          { num: '1', label: 'Votre projet' },
+          { num: '2', label: 'Coordonnées' },
+          { num: '3', label: 'Confirmation' },
+        ].map((step, i) => (
+          <>
+            <div style={`display:flex;align-items:center;gap:.75rem;${i===0?'':'opacity:.5;'}`}>
+              <div style={`width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.875rem;${i===0?'background:linear-gradient(135deg,#00e5ff,#0066ff);color:#0a0f1e;':'background:#e2e8f0;color:#94a3b8;'}`}>{step.num}</div>
+              <span style={`font-size:.875rem;font-weight:600;${i===0?'color:#0f172a;':'color:#94a3b8;'}`}>{step.label}</span>
+            </div>
+            {i < 2 && <div style="flex:1;height:2px;background:#e2e8f0;max-width:80px;"></div>}
+          </>
+        ))}
+      </div>
+
+      <!-- Form step 1 -->
+      <div class="reveal-element" style="background:white;border-radius:1.5rem;padding:3rem;box-shadow:0 4px 24px rgba(0,0,0,.06);">
+        <h2 style="font-size:1.5rem;font-weight:800;color:#0f172a;margin:0 0 2rem;">Décrivez votre projet</h2>
+        <form style="display:flex;flex-direction:column;gap:1.5rem;" onsubmit="return false;">
+          <div>
+            <label class="form-label">Type de travaux *</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.5rem;">
+              {['Construction neuve', 'Rénovation', 'Isolation', 'Peinture', 'Charpente', 'Couverture', 'Ravalement', 'Étanchéité'].map(type => (
+                <label style="display:flex;align-items:center;gap:.75rem;padding:.875rem 1rem;border:1.5px solid #e2e8f0;border-radius:.75rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor='#e2e8f0'">
+                  <input type="checkbox" style="width:16px;height:16px;accent-color:var(--electric);" />
+                  <span style="font-size:.875rem;font-weight:500;color:#374151;">{type}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div>
+              <label class="form-label">Ville d'intervention *</label>
+              <input type="text" class="form-input" placeholder="Ex: Montpellier" required />
+            </div>
+            <div>
+              <label class="form-label">Surface estimée</label>
+              <input type="text" class="form-input" placeholder="Ex: 150 m²" />
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Budget estimé</label>
+            <select class="form-select">
+              <option>Moins de 10 000€</option>
+              <option>10 000€ - 50 000€</option>
+              <option>50 000€ - 150 000€</option>
+              <option>150 000€ - 500 000€</option>
+              <option>Plus de 500 000€</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Délai souhaité</label>
+            <select class="form-select">
+              <option>Dès que possible</option>
+              <option>Dans 1 à 3 mois</option>
+              <option>Dans 3 à 6 mois</option>
+              <option>Dans 6 mois à 1 an</option>
+              <option>Plus d'un an</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Description du projet</label>
+            <textarea class="form-textarea" placeholder="Décrivez votre projet en détail : état actuel, objectifs souhaités, contraintes particulières..." rows="4"></textarea>
+          </div>
+
+          <div style="border-top:1px solid #f1f5f9;padding-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div>
+              <label class="form-label">Nom & Prénom *</label>
+              <input type="text" class="form-input" placeholder="Jean Dupont" required />
+            </div>
+            <div>
+              <label class="form-label">Téléphone *</label>
+              <input type="tel" class="form-input" placeholder="06 XX XX XX XX" required />
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Email *</label>
+            <input type="email" class="form-input" placeholder="votre@email.fr" required />
+          </div>
+
+          <button type="submit" class="btn-gradient" style="width:100%;justify-content:center;padding:1rem 2rem;font-size:1rem;">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Envoyer ma demande de devis
+          </button>
+          <p style="text-align:center;font-size:.8rem;color:#94a3b8;margin:0;">
+            🔒 Vos données sont confidentielles. Devis gratuit et sans engagement.
+          </p>
+        </form>
+      </div>
+
+      <!-- Guarantees -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;" class="devis-guarantees">
+        {[
+          { icon: '⚡', title: 'Réponse 48h', desc: 'Devis détaillé sous 48h ouvrées garanties.' },
+          { icon: '🆓', title: 'Gratuit', desc: 'Devis et visite technique 100% sans frais.' },
+          { icon: '🤝', title: 'Sans engagement', desc: 'Aucune obligation d\'accepter notre offre.' },
+        ].map(g => (
+          <div style="padding:1.25rem;background:white;border-radius:.875rem;border:1.5px solid #f1f5f9;text-align:center;" class="reveal-element">
+            <div style="font-size:1.5rem;margin-bottom:.5rem;">{g.icon}</div>
+            <div style="font-weight:700;color:#0f172a;font-size:.875rem;margin-bottom:.25rem;">{g.title}</div>
+            <div style="font-size:.75rem;color:#94a3b8;line-height:1.5;">{g.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+@media(max-width:639px){ .devis-guarantees { grid-template-columns: 1fr !important; } }
+</style>

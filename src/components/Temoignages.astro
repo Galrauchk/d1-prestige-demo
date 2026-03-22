@@ -1,0 +1,113 @@
+---
+const temoignages = [
+  {
+    nom: 'Jean-Pierre Martineau',
+    role: 'Propriétaire - Montpellier',
+    photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&q=80',
+    texte: 'Meridian Groupe a réalisé l\'extension de notre maison en 4 mois. Respect des délais, qualité irréprochable, équipe à l\'écoute. Je les recommande sans hésitation pour tout projet de construction.',
+    note: 5,
+  },
+  {
+    nom: 'Sophie Lacombe',
+    role: 'Cheffe d\'entreprise - Nîmes',
+    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80',
+    texte: 'La rénovation de nos bureaux a été parfaitement orchestrée. Un seul interlocuteur pour tous les corps de métier, c\'est un vrai confort. Le résultat final dépasse nos espérances.',
+    note: 5,
+  },
+  {
+    nom: 'Michel Bertrand',
+    role: 'Syndic de copropriété - Béziers',
+    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80',
+    texte: 'Ravalement de notre immeuble de 12 logements mené avec beaucoup de professionnalisme. Respect des riverains, propreté de chantier exemplaire. Le rapport qualité-prix est excellent.',
+    note: 5,
+  },
+  {
+    nom: 'Aurélie Vidal',
+    role: 'Architecte - Montpellier',
+    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&q=80',
+    texte: 'En tant qu\'architecte, je fais régulièrement appel à Meridian pour mes chantiers. Leur réactivité et leur maîtrise technique sont des atouts majeurs. Un partenaire fiable sur lequel compter.',
+    note: 5,
+  },
+  {
+    nom: 'François Dupuis',
+    role: 'Promoteur - Lattes',
+    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80',
+    texte: 'Trois programmes résidentiels réalisés avec Meridian. À chaque fois, le même niveau d\'exigence, les mêmes délais tenus. Un groupe qui a su grandir sans perdre son âme artisanale.',
+    note: 5,
+  },
+]
+---
+
+<section class="section-lg" style="background:var(--navy);position:relative;overflow:hidden;">
+  <!-- Gradient mesh -->
+  <div class="gradient-mesh"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:4rem;" class="reveal-element">
+      <div class="section-label" style="justify-content:center;">Ils nous font confiance</div>
+      <h2 class="h2-serif" style="color:white;font-size:clamp(2rem,4vw,3rem);margin:0;">
+        Ce que disent nos clients
+      </h2>
+    </div>
+
+    <!-- Carousel -->
+    <div style="overflow:hidden;margin:-1rem;padding:1rem;" class="reveal-element">
+      <div class="carousel-track">
+        <!-- First set -->
+        {temoignages.map(t => (
+          <div class="glass-card gradient-border-card" style="flex-shrink:0;width:340px;padding:2rem;display:flex;flex-direction:column;gap:1.25rem;">
+            <!-- Stars -->
+            <div class="stars">
+              {Array(t.note).fill(0).map(() => (
+                <svg width="16" height="16" fill="var(--cyan)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <!-- Text -->
+            <p style="color:rgba(255,255,255,.75);font-size:.9375rem;line-height:1.7;margin:0;flex:1;">"{t.texte}"</p>
+            <!-- Author -->
+            <div style="display:flex;align-items:center;gap:.875rem;padding-top:.875rem;border-top:1px solid rgba(255,255,255,.08);">
+              <img src={t.photo} alt={t.nom} loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,229,255,.3);" />
+              <div>
+                <div style="font-weight:700;color:white;font-size:.9rem;">{t.nom}</div>
+                <div style="font-size:.75rem;color:var(--cyan);">{t.role}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+        <!-- Duplicate for seamless loop -->
+        {temoignages.map(t => (
+          <div class="glass-card gradient-border-card" style="flex-shrink:0;width:340px;padding:2rem;display:flex;flex-direction:column;gap:1.25rem;" aria-hidden="true">
+            <div class="stars">
+              {Array(t.note).fill(0).map(() => (
+                <svg width="16" height="16" fill="var(--cyan)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <p style="color:rgba(255,255,255,.75);font-size:.9375rem;line-height:1.7;margin:0;flex:1;">"{t.texte}"</p>
+            <div style="display:flex;align-items:center;gap:.875rem;padding-top:.875rem;border-top:1px solid rgba(255,255,255,.08);">
+              <img src={t.photo} alt={t.nom} loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,229,255,.3);" />
+              <div>
+                <div style="font-weight:700;color:white;font-size:.9rem;">{t.nom}</div>
+                <div style="font-size:.75rem;color:var(--cyan);">{t.role}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Trust indicator -->
+    <div style="text-align:center;margin-top:3.5rem;" class="reveal-element">
+      <div style="display:inline-flex;align-items:center;gap:.625rem;padding:.75rem 1.5rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9999px;">
+        <div class="stars">
+          {Array(5).fill(0).map(() => (
+            <svg width="14" height="14" fill="var(--cyan)" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          ))}
+        </div>
+        <span style="color:rgba(255,255,255,.8);font-size:.875rem;font-weight:600;">
+          <span style="color:white;font-weight:800;" data-count="4.9" data-decimal="true" data-suffix="/5">4.9/5</span>
+          &nbsp;— 98% de clients satisfaits sur 2 400+ chantiers
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
