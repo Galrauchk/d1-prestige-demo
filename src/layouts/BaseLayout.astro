@@ -71,8 +71,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
   {schema && <script type="application/ld+json" set:html={schema} />}
 
   <!-- Default Organization schema on every page -->
-  <script type="application/ld+json">{
-    JSON.stringify({
+  <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Meridian Groupe",
@@ -92,8 +91,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
         "addressCountry": "FR"
       },
       "sameAs": ["https://www.linkedin.com/company/meridian-groupe"]
-    })
-  }</script>
+    })} />
 </head>
 <body class={bodyClass}>
   <Header />
