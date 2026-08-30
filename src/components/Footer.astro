@@ -1,6 +1,7 @@
 ---
 import { metiers } from '../data/metiers'
 import { villes } from '../data/villes'
+import LegalLinks from './LegalLinks.astro'
 
 const villesCol = villes.slice(0, 10)
 ---
@@ -103,12 +104,12 @@ const villesCol = villes.slice(0, 10)
             </span>
             04 67 00 00 00
           </a>
-          <a href="mailto:contact@meridian-groupe.fr" style="display:flex;align-items:center;gap:.75rem;color:rgba(255,255,255,.7);font-size:.875rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.7)'">
+          <div style="display:flex;align-items:center;gap:.75rem;color:rgba(255,255,255,.7);font-size:.875rem;">
             <span style="width:32px;height:32px;background:rgba(0,229,255,.1);border-radius:.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <svg width="14" height="14" fill="none" stroke="var(--cyan)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </span>
             contact@meridian-groupe.fr
-          </a>
+          </div>
           <div style="display:flex;align-items:flex-start;gap:.75rem;color:rgba(255,255,255,.7);font-size:.875rem;">
             <span style="width:32px;height:32px;background:rgba(0,229,255,.1);border-radius:.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
               <svg width="14" height="14" fill="none" stroke="var(--cyan)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -138,6 +139,7 @@ const villesCol = villes.slice(0, 10)
         <a href="/cgv" style="color:rgba(255,255,255,.35);font-size:.75rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.6)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">CGV</a>
         <a href="/contact" style="color:rgba(255,255,255,.35);font-size:.75rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.6)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Contact</a>
       </div>
+      <LegalLinks includeMentions={false} />
     </div>
   </div>
 </footer>

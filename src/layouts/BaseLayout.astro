@@ -1,6 +1,8 @@
 ---
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+import ConsentTracking from '../components/ConsentTracking.astro'
+import ConsentBanner from '../components/ConsentBanner.astro'
 import '../styles/global.css'
 
 interface Props {
@@ -31,6 +33,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <ConsentTracking />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <!-- Primary SEO -->
@@ -99,6 +102,7 @@ const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
     <slot />
   </main>
   <Footer />
+  <ConsentBanner />
 
   <!-- Intersection Observer: scroll reveal + count-up -->
   <script>
