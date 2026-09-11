@@ -129,11 +129,7 @@ const villesCol = villes.slice(0, 10)
 
     <!-- Bottom bar -->
     <div style="border-top:1px solid rgba(255,255,255,.08);padding:1.5rem 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
-      <p style="color:rgba(255,255,255,.35);font-size:.75rem;">
-        © 2024 Meridian Groupe · Tous droits réservés ·
-        <span style="color:rgba(255,255,255,.2);">Template D1 PRESTIGE by</span>
-        <span style="background:linear-gradient(135deg,#00e5ff,#0066ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;"> WebTrafic</span>
-      </p>
+      <p style="color:rgba(255,255,255,.65);font-size:.75rem;">© 2024 Meridian Groupe · Tous droits réservés</p>
       <div style="display:flex;align-items:center;gap:1.5rem;">
         <a href="/mentions-legales" style="color:rgba(255,255,255,.35);font-size:.75rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.6)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Mentions légales</a>
         <a href="/cgv" style="color:rgba(255,255,255,.35);font-size:.75rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.6)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">CGV</a>
@@ -142,6 +138,9 @@ const villesCol = villes.slice(0, 10)
       <LegalLinks includeMentions={false} />
     </div>
   </div>
+  <p data-webtrafic-credit style="margin: 1rem; text-align: center; font-size: 0.75rem; line-height: 1.6;">
+    Site réalisé par <a href="https://webtrafic.fr/" style="color: inherit; text-decoration: underline; text-underline-offset: 0.2em;">WebTrafic</a>
+  </p>
 </footer>
 
 <style>
