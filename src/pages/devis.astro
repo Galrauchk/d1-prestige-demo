@@ -25,7 +25,7 @@ import Breadcrumb from '../components/Breadcrumb.astro'
   <section class="section" style="background:#f8fafc;">
     <div class="container" style="max-width:780px;">
       <!-- Steps indicator -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:3.5rem;" class="reveal-element">
+      <div style="display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:3.5rem;" class="reveal-element quote-steps">
         {[
           { num: '1', label: 'Votre projet' },
           { num: '2', label: 'Coordonnées' },
@@ -42,12 +42,12 @@ import Breadcrumb from '../components/Breadcrumb.astro'
       </div>
 
       <!-- Form step 1 -->
-      <div class="reveal-element" style="background:white;border-radius:1.5rem;padding:3rem;box-shadow:0 4px 24px rgba(0,0,0,.06);">
+      <div class="reveal-element" style="background:white;border-radius:1.5rem;padding:clamp(1.25rem,5vw,3rem);box-shadow:0 4px 24px rgba(0,0,0,.06);">
         <h2 style="font-size:1.5rem;font-weight:800;color:#0f172a;margin:0 0 2rem;">Décrivez votre projet</h2>
         <form style="display:flex;flex-direction:column;gap:1.5rem;" onsubmit="return false;">
           <div>
             <label class="form-label">Type de travaux *</label>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.5rem;">
+            <div class="responsive-grid" style="display:grid;--desktop-columns:1fr 1fr;gap:.75rem;margin-top:.5rem;">
               {['Construction neuve', 'Rénovation', 'Isolation', 'Peinture', 'Charpente', 'Couverture', 'Ravalement', 'Étanchéité'].map(type => (
                 <label style="display:flex;align-items:center;gap:.75rem;padding:.875rem 1rem;border:1.5px solid #e2e8f0;border-radius:.75rem;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--cyan)'" onmouseout="this.style.borderColor='#e2e8f0'">
                   <input type="checkbox" style="width:16px;height:16px;accent-color:var(--electric);" />
@@ -56,7 +56,7 @@ import Breadcrumb from '../components/Breadcrumb.astro'
               ))}
             </div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="responsive-grid" style="display:grid;--desktop-columns:1fr 1fr;gap:1rem;">
             <div>
               <label class="form-label">Ville d'intervention *</label>
               <input type="text" class="form-input" placeholder="Ex: Montpellier" required />
@@ -91,7 +91,7 @@ import Breadcrumb from '../components/Breadcrumb.astro'
             <textarea class="form-textarea" placeholder="Décrivez votre projet en détail : état actuel, objectifs souhaités, contraintes particulières..." rows="4"></textarea>
           </div>
 
-          <div style="border-top:1px solid #f1f5f9;padding-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="responsive-grid" style="border-top:1px solid #f1f5f9;padding-top:1.5rem;display:grid;--desktop-columns:1fr 1fr;gap:1rem;">
             <div>
               <label class="form-label">Nom & Prénom *</label>
               <input type="text" class="form-input" placeholder="Jean Dupont" required />

@@ -12,7 +12,7 @@ const villesCol2 = villes.slice(10, 20)
     <span style="color:rgba(255,255,255,.75);font-size:.75rem;white-space:nowrap;">
       📍 Montpellier, 34000
     </span>
-    <div style="display:flex;align-items:center;gap:1rem;color:rgba(255,255,255,.75);font-size:.75rem;" class="hidden md:flex">
+    <div style="align-items:center;gap:1rem;color:rgba(255,255,255,.75);font-size:.75rem;" class="hidden md:flex">
       <span style="display:flex;align-items:center;gap:.375rem;">
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
         Certifié RGE
@@ -29,7 +29,7 @@ const villesCol2 = villes.slice(10, 20)
       </span>
     </div>
     <div style="display:flex;align-items:center;gap:1rem;">
-      <a href="tel:0467000000" style="color:rgba(255,255,255,.8);font-size:.75rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:.3rem;" class="hidden sm:flex">
+      <a href="tel:0467000000" style="color:rgba(255,255,255,.8);font-size:.75rem;font-weight:600;text-decoration:none;align-items:center;gap:.3rem;" class="hidden sm:flex">
         <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 15.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 4.8h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 12.1a16 16 0 006 6l.9-.9a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 19.43v-.51z"/></svg>
         04 67 00 00 00
       </a>
@@ -60,7 +60,7 @@ const villesCol2 = villes.slice(10, 20)
     </a>
 
     <!-- Desktop Nav -->
-    <nav style="display:flex;align-items:center;gap:.25rem;flex:1;justify-content:center;" class="hidden lg:flex">
+    <nav style="align-items:center;gap:.25rem;flex:1;justify-content:center;" class="hidden lg:flex">
 
       <!-- Nos Métiers -->
       <div class="nav-item" style="position:relative;">
@@ -184,10 +184,10 @@ const villesCol2 = villes.slice(10, 20)
 
     <!-- CTA + Mobile toggle -->
     <div style="display:flex;align-items:center;gap:.75rem;flex-shrink:0;">
-      <a href="/devis" class="btn-gradient magnetic-btn hidden sm:inline-flex" style="padding:.625rem 1.375rem;font-size:.875rem;">
+      <a href="/devis" class="header-quote btn-gradient magnetic-btn" style="padding:.625rem 1.375rem;font-size:.875rem;">
         Devis gratuit
       </a>
-      <button id="mobile-toggle" class="lg:hidden" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;cursor:pointer;color:white;" aria-label="Menu">
+      <button id="mobile-toggle" class="mobile-menu-toggle" style="width:40px;height:40px;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:.5rem;cursor:pointer;color:white;" aria-label="Menu" aria-controls="mobile-drawer" aria-expanded="false">
         <svg id="hamburger-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
@@ -195,7 +195,7 @@ const villesCol2 = villes.slice(10, 20)
 </header>
 
 <!-- Mobile Drawer -->
-<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true" inert>
   <div style="padding:1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);">
     <a href="/" style="display:flex;align-items:center;gap:.75rem;text-decoration:none;">
       <div style="width:36px;height:36px;border-radius:.375rem;background:linear-gradient(135deg,#00e5ff,#0066ff);display:flex;align-items:center;justify-content:center;">
@@ -231,14 +231,23 @@ const villesCol2 = villes.slice(10, 20)
   toggle?.addEventListener('click', () => {
     drawer?.classList.add('open')
     drawer?.setAttribute('aria-hidden', 'false')
+    drawer?.removeAttribute('inert')
+    toggle?.setAttribute('aria-expanded', 'true')
+    close?.focus()
     document.body.style.overflow = 'hidden'
   })
   const closeFn = () => {
     drawer?.classList.remove('open')
     drawer?.setAttribute('aria-hidden', 'true')
+    drawer?.setAttribute('inert', '')
+    toggle?.setAttribute('aria-expanded', 'false')
+    toggle?.focus()
     document.body.style.overflow = ''
   }
   close?.addEventListener('click', closeFn)
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && drawer?.classList.contains('open')) closeFn()
+  })
   drawer?.addEventListener('click', (e) => {
     if (e.target === drawer) closeFn()
   })
