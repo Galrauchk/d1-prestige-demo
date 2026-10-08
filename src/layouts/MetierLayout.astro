@@ -20,14 +20,14 @@ const schema = JSON.stringify({
   },
   "description": metier.descriptionLongue,
   "areaServed": "Occitanie",
-  "url": `https://d1-prestige-demo.netlify.app/metiers/${metier.slug}`
+  "url": `https://demo-prestige.webtrafic.fr/metiers/${metier.slug}`
 })
 ---
 
 <BaseLayout
   title={`${metier.nom} en Occitanie — Meridian Groupe | Expert BTP`}
   description={`${metier.nom} en Occitanie par Meridian Groupe. ${metier.description} Certifié ${metier.certifications[0]}. Devis gratuit 48h — 04 67 00 00 00.`}
-  canonical={`https://d1-prestige-demo.netlify.app/metiers/${metier.slug}`}
+  canonical={`https://demo-prestige.webtrafic.fr/metiers/${metier.slug}`}
   schema={schema}
 >
   <!-- Page hero -->

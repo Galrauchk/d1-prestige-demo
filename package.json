@@ -31,6 +31,6 @@
     "wrangler": "4.143.0"
   },
   "cloudflare": {
-    "domaine": "d1-prestige-demo.netlify.app"
+    "domaine": "demo-prestige.webtrafic.fr"
   }
 }

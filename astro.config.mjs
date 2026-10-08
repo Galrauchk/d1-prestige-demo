@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://d1-prestige-demo.netlify.app',
+  site: 'https://demo-prestige.webtrafic.fr',
   integrations: [
     react(),
     sitemap({
