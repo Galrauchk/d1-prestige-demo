@@ -14,12 +14,12 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://d1-prestige-demo.netlify.app" },
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://demo-prestige.webtrafic.fr" },
     ...items.map((item, i) => ({
       "@type": "ListItem",
       "position": i + 2,
       "name": item.label,
-      ...(item.href ? { "item": `https://d1-prestige-demo.netlify.app${item.href}` } : {})
+      ...(item.href ? { "item": `https://demo-prestige.webtrafic.fr${item.href}` } : {})
     }))
   ]
 }
