@@ -24,7 +24,6 @@ body {
   color: var(--text-dark);
   background: #fff;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 ::selection { background: var(--cyan); color: var(--navy); }
 img { display: block; max-width: 100%; }
@@ -363,3 +362,20 @@ img { display: block; max-width: 100%; }
 }
 
 .magnetic-btn { transition: transform .3s cubic-bezier(.25,.46,.45,.94); will-change: transform; }
+
+/* La navigation mobile ne réserve aucune largeur hors écran lorsqu'elle est fermée. */
+.mobile-drawer { visibility: hidden; }
+.mobile-drawer.open { visibility: visible; }
+.header-quote { display: none; }
+.mobile-menu-toggle { display: flex; }
+@media (min-width: 640px) { .header-quote { display: inline-flex; } }
+@media (min-width: 1024px) { .mobile-menu-toggle { display: none; } }
+
+/* Les grilles de contenu se replient sans déplacer les URL des pages. */
+.responsive-grid { grid-template-columns: var(--desktop-columns); }
+.responsive-grid > *, .combo-grid > *, .metier-detail-grid > *, .why-grid > * { min-width: 0; }
+@media (max-width: 639px) {
+  .responsive-grid { grid-template-columns: minmax(0, 1fr); }
+  .quote-steps { flex-direction: column; }
+  .btn-gradient { max-width: 100%; white-space: normal; text-align: center; }
+}

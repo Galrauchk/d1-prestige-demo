@@ -69,7 +69,7 @@ const schema = JSON.stringify({
           <p style="color:#374151;line-height:1.8;margin-bottom:2rem;">
             À {ville.nom}, nos équipes interviennent dans un délai de {ville.interventionTime} depuis notre siège montpelliérain. Notre connaissance du territoire {ville.departement} et des contraintes climatiques méditerranéennes nous permet d'adapter chaque prestation au contexte local.
           </p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.625rem;">
+          <div class="responsive-grid" style="display:grid;--desktop-columns:1fr 1fr;gap:.625rem;">
             {metier.prestations.map(p => (
               <div style="display:flex;align-items:center;gap:.5rem;padding:.625rem .875rem;background:#f8fafc;border-radius:.5rem;">
                 <svg width="12" height="12" fill="none" stroke="var(--cyan)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>
